@@ -66,7 +66,7 @@
 \newcommand{\hL}{\mathcal{L}}
 \newcommand{\tT}{\mathcal{T}} %topologisches T
 \newcommand{\B}{\mathcal{B}} %Raum der beschränkten Funktion
-\newcommand{\BS}[1][X,Y]{\mathcal{B}(#1)} %"standardraum" der beschränkten Funktion
+\newcommand{\BS}[1][X,Y]{\mathcal{B}(#1)} %"Standardraum" der beschränkten Funktion
 %Für (mind.) ein Beweis notwendig:
 \newcommand{\dX}{\hat{X}}%Dach X
 \newcommand{\dd}{\hat{d}}%Dach d
@@ -843,13 +843,13 @@ klar! (Ja, selbst ohne eine Behauptung)
 
 %Korollar 1.42
 	\begin{cor}
-		$(X,d)$ metrischer Raum
+		$(X,d)$ sei ein metrischer Raum. Dann gilt:
 			\begin{enumerate}[a)]
 				\item $(X,d)$ kompakt $\df$ $X$ vollständig
-				\item $M\subset X$, so dass jede Folge in M eine in M konvergente Teilfolge hat (\afs M folgenkomapkt\afs)
-					$\Leftrightarrow$ $M \subset X$ kompakt (\afs M Überdeckungskompakt\afs)
-				\item $M\subset X$ kompakt $\df$ $M$ beschränkt und abgeschlossen.
-				\item $X$ kompakt, $A \subset X$ abgeschlossen $\df$ $A$ kompakt.
+				\item $M\subseteq X$, so dass jede Folge in M eine in M konvergente Teilfolge hat (\afs M folgenkomapkt\afs)
+					$\Leftrightarrow$ $M \subseteq X$ kompakt (\afs M Überdeckungskompakt\afs)
+				\item $M\subseteq X$ kompakt $\df$ $M$ beschränkt und abgeschlossen.
+				\item $X$ kompakt, $A \subseteq X$ abgeschlossen $\df$ $A$ kompakt.
 			\end{enumerate}
 	\end{cor}
 
@@ -866,23 +866,30 @@ klar! (Ja, selbst ohne eine Behauptung)
 
 %Satz 1.45
 	\begin{thm}
-		$(X,d)$ metrischer Raum. $M,N \subset X$ seien relativ kompakt (bzw. präkompakt). Dann gilt 
-			\begin{enumerate}
-				\item $S\subset M$ $\df$ $S$ relativ kompakt (bzw. präkompakt)
+		Sei $(X,d)$ ein metrischer Raum. $M,N \subseteq X$ seien relativ kompakt (bzw. präkompakt). Dann gilt 
+			\begin{enumerate} [(a)]
+				\item $S\subseteq M$ $\df$ $S$ relativ kompakt (bzw. präkompakt)
 				\item $M\cup N$ relativ kompakt (bzw präkompakt)
-				\item $M,N$ präkompakt
+				\item $M$ relativ kompakt $\df$ M präkompakt
 				\item Ist $(X,d)$ vollständig, so gilt $M$ relativ kompakt $\Leftrightarrow M$ präkompakt
 			\end{enumerate}
 	\end{thm}
 
 	\begin{proof}
 		\begin{itemize}[]
-			\item \qmarks{a) - c)}: mündlicher Beweis. TODO. folgt aus Definition.
+			\item a) relativ kompakt: Sei $(x_n)$ eine Folge aus $S$. Da $(x_n)$ ein Folge in M ist, hat es eine konvergente Teilfolge, dessen Grenzwert in $\overline{M}$ ist. Dann ist der Grenzwert auch in $\overline{S}$. Also ist S relativ kompakt. 
+				präkompakt: Sei $\varepsilon>0$ gegeben. Dann gibt es eine endliche Menge $\{x_1,\dots,x_n\}\subseteq M$, so dass $S\subseteq M = \bigcup^n_{i=0}U_\varepsilon(x_i)$. Also ist auch S präkompakt.
+			
+			\item b) relativ kompakt: Ist $(x_n)$ eine Folge aus $M\cup N$, so gibt es eine Teilfolge, die nur in $M$ oder $N$ ist. Dann hat diese Teilfolge noch eine konvergente Teilfolge.
+				präkompakt: $M$ und $N$ haben jeweils ein $\varepsilon$-Netz. Die Vereinigung ist dann auch ein $\varepsilon$-Netz.
+				
+			\item c) Angenommen M sei nicht präkompakt, dann gibt es ein $\varepsilon>0$, so dass sich $M$ nicht durch endlich viele $\varepsilon$-Kugeln überdecken lässt. Wählen wir aus jedem dieser  (mindestens abzählbar vielen) Kugeln ein Element aus, entsteht eine Folge, dessen Folgenglieder alle Mindestabstand $\frac{\varepsilon}{2}$ zueinander haben. $\df$ Es gibt keine konvergente Teilfolge $\df$ $M$ nicht relativ kompakt.
+			
 			\item d) $\qmarks{\df}$ folgt aus c) \par
-				$\qmarks{\Leftarrow}$ Sei $M$ präkompakt $\forall \varepsilon > 0\; \exists p\in\N, \{x_1,\dots,x_p\} \subset X$ mit $M \subset \cup_{j=1}^p \overline{ U_{\frac{\varepsilon}{2}}(x_j)}$. 
+				$\qmarks{\Leftarrow}$ Sei $M$ präkompakt $\df \forall \varepsilon > 0\; \exists p\in\N, \{x_1,\dots,x_p\} \subset X$ mit $M \subset \cup_{j=1}^p \overline{ U_{\frac{\varepsilon}{2}}(x_j)}$. 
 				Wegen $\overline{U_{\frac{\varepsilon}{2}}(x_j)} \subset U_{{\varepsilon}}(x_j)$ gilt
-				$\overline{M} \subset \cup_{j=1}^p \overline{U_{\frac{\varepsilon}{2}}(x_j)} \subset \cup_{j=1}^p U_{\varepsilon}(x_j)$
-				$\df$ $\overline{M}$ präkompakt. Da $(\overline{M},d)$ vollständig ist $\overline{M}$ kompakt. (Satz 1.41) $\df$ $M$ relativ kompakt.
+				$\overline{M} \subset \cup_{j=1}^p \overline{U_{\frac{\varepsilon}{2}}(x_j)} \subset \cup_{j=1}^r U_{\varepsilon}(x_j)$
+				$\df$ $\overline{M}$ präkompakt. Da $(\overline{M},d)$ vollständig ist, ist $\overline{M}$ kompakt. (Satz 1.41) $\df$ $M$ relativ kompakt.
 
 		\end{itemize}
 	\end{proof}
@@ -905,17 +912,16 @@ klar! (Ja, selbst ohne eine Behauptung)
 :
 %Lemma 1.47 Lemma von Riesz
 	\begin{lemma}[Lemma von Riesz]%Lemmaumgebung gab es schon :O
-		\TODO: Beweis vervollständigen. $(X,\norm{\cdot})$ normierter Raum, $E\subset X$ abgeschlossener Unterraum mit $E \not = X$, $\eta\in (0,1)$. \par
+		$(X,\norm{\cdot})$ normierter Raum, $E\subset X$ abgeschlossener Unterraum mit $E \not = X$, $\eta\in (0,1)$. \par
 		Dann existiert ein $x_\eta \in X$ mit $\norm{\xt} = 1$ und $\norm{\xt - y} \geq \eta \; \forall y\in E.$
 	\end{lemma}
 	\begin{proof}
-		Sei $x_0 \in X\backslash E$. $\delta = \inf_{y\in E} \norm{x_0 - y}$ \par
-		E abgeschlossen $\df$ $\delta > 0$. Sei $(y_n)$ Folge in $E$ mit $\norm{x_0 - y_n} \to \delta$. Sei $\eta \in (0,1) \df \frac{\delta}{\eta} > \delta $\par
-		$\df \exists z\in E$ mit $\norm{x_0 - z} \leq \frac{\delta}{\eta}.$ Definiere $\xt := \frac{x_0-z}{\norm{x_0 - z}} \df \norm{\xt} = 1$
+		Sei $x_0 \in X\backslash E$. $\delta := \inf_{y\in E} \norm{x_0 - y}$, da E abgeschlossen ist, ist $\delta > 0$. Sei $\eta \in (0,1) \df \frac{\delta}{\eta} > \delta $ $\df \exists z\in E$ mit $\norm{x_0 - z} \leq \frac{\delta}{\eta}.$ Definiere $\xt := \frac{x_0-z}{\norm{x_0 - z}} \df \norm{\xt} = 1$
 		Für $y\in E$ gilt 
-		$\norm{\xt - y} = \norm{y - \frac{x_0-z}{\norm{x_0 - z}}} 
-		= \norm{y + \frac{z}{\norm{x_0 - z}} - \frac{x_0}{\norm{x_0 - z}}} = \frac{1}{\norm{x_0 - z}} \norm{(\norm{x_0 - z}y + z) - x_0} 
-		\geq> \delta\cdot \frac{1}{\norm{x_0 - z}} \geq \frac{\eta}{\delta} \cdot \delta = \eta$
+		$$\norm{\xt - y} = \norm{y - \frac{x_0-z}{\norm{x_0 - z}}} 
+		= \norm{y + \frac{z}{\norm{x_0 - z}} - \frac{x_0}{\norm{x_0 - z}}} 
+		= \frac{\norm{\overbrace{(\norm{x_0 - z}y + z)}^{\in E} - x_0}}{\norm{x_0 - z}}  
+		\geq \delta\cdot \frac{1}{\norm{x_0 - z}} \geq \frac{\eta}{\delta} \cdot \delta = \eta$$
 	\end{proof}	
 
 	\begin{cor}
@@ -927,18 +933,18 @@ klar! (Ja, selbst ohne eine Behauptung)
 	\end{cor}
 
 	\begin{proof}
-		a) \afs $\Leftarrow$ \afs Folgt aus Heine-Borel\par
+		1. \afs $\Leftarrow$ \afs Folgt aus Heine-Borel\par
 		 \par
 		$\Rightarrow$ Angenommen, $dim X = \infty$ (Nicht endlichdimensional). Wähle $x_0 \in X$ mit $\norm{x_0} = 1$. Nach Lemma von Riesz, wähle $x_1 \in X$, so dass $\norm{x_1 - y} \geq \frac{1}{2} \forall y \in \aufspan\{x_0\}$. \par
 		Konstruiere so Folge $(x_n)$ mit $\norm{x_n} = 1$ und $\norm{x_n - y} \geq \frac{1}{2} \forall y\in \aufspan\{x_0,\dots,x_{n-1}\}\; \forall n\in\N.$ \par
 		$\df \norm{x_n - x_m} \geq \frac{1}{2}\; \forall n,m \in \N$  mit $n \not = m$. 
 		$\df (x_n)$ hat keine konvergente Teilfolge. \par
-		b) genauso.
+		2. genauso.
 	\end{proof}
 
 	\subsection{Skalarprodukträume}
 
-	Wiederholung: $X$ $\K-VR$. Ein \qmarks{Skalarprodukt} ist eine Abb $(\cdot,\cdot) \to \K$ mit (S1) $(\alpha x + \beta y, z) = \alpha (x,z) + \beta (y,z)$ $\forall x,y,z \in X, \alpha,\beta \in \K$
+	Wiederholung: $X$ $\K-$Vektorraum. Ein \qmarks{Skalarprodukt} ist eine Abb $(\cdot,\cdot) \to \K$ mit (S1) $(\alpha x + \beta y, z) = \alpha (x,z) + \beta (y,z)$ $\forall x,y,z \in X, \alpha,\beta \in \K$
 	(S2) $(x,y) = (y,x)$
 	(S3) $(x,x) > 0 \forall x\in X\backslash{0}$.
 
@@ -946,37 +952,36 @@ klar! (Ja, selbst ohne eine Behauptung)
 		\begin{enumerate}
 			\item $\norm{x} := \sqrt{(x,x)}$ ist Norm.
 			\item vollständig Skalarproduktraum heißt \qmarks{Hilbertraum}.
-			\item $\norm{x} \cdot \norm{y} \geq |(x,y)| \; \forall x,y \in X$ (Cauchy-Schwartz-Ungleichung)
-			\item Für $x,y \in X$ mit $(x,y) = 0$ (x und y orthogonal, $x orh y$)
+			\item $\norm{x} \cdot \norm{y} \geq |(x,y)| \; \forall x,y \in X$ (Cauchy-Schwarz-Ungleichung)
+			\item Für $x,y \in X$ mit $(x,y) = 0$ (x und y orthogonal, $x \perp y$)
 			gilt $\norm{x + y}^2 = \norm{x}^2 + \norm{y}^2$ (Satz des Pythagoras)
 			\item Für $x,y \in X$ gilt die Parallelogrammgleichung: 
 				$\norm{x + y} ^2 + \norm{x - y}^2 = 2 \norm{x}^2 + 2\norm{y}^2$
 			\item	Für $(x_n), (y_n)$ mit $(x_n) \to x$, $(y_n) \to y$ gilt 
-				$(x_n, y_n) \to (x,y)$, da $|(x_n, y_n) - (x,y)| \leq \norm{x_n}\cdot \norm{y_n - y} + \norm{x_n - x}\norm{y}$ (Stetigkeit des Skalarprodukts)
+				$(x_n, y_n) \to (x,y)$, da\\ $|(x_n, y_n) - (x,y)| \leq \norm{x_n}\cdot \norm{y_n - y} + \norm{x_n - x}\norm{y}$ (Stetigkeit des Skalarprodukts)
 		\end{enumerate}
 	\end{bem}
 
 	\begin{thm}
-		Sei $(X,\norm{})$ normierter Raum mit $\norm{x+y}^2 + \norm{x-y}^2 = 2... \forall x,y \in X$ 
-		Dann existiert Skalarprodukt auf $X$, welches $\norm{\cdot}$ induziert.
+		Sei $(X,\norm{\cdot})$ normierter Raum mit $\norm{x+y}^2 + \norm{x-y}^2 = 2... \forall x,y \in X$ 
+		Dann existiert ein Skalarprodukt auf $X$, welches $\norm{\cdot}$ induziert.
 	\end{thm}
 	\begin{proof}
-		Skizze! a) $\K = \R$ $(x,y) := \frac{1}{4}(\norm{x + y}^2 - \norm{x-y}^2)$. b) $\K = \C$ 
-
+		Skizze! a) $\K = \R$ $(x,y) := \frac{1}{4}(\norm{x + y}^2 - \norm{x-y}^2)$.\\ b) $\K = \C$ $(x,y) := \frac{1}{4}(\| x+y\|^2 - \|x-y\|^2 + i(\|x+iy\|^2 + \|x-iy\|^2)$
 	\end{proof}
 \newcommand{\xf}{(x_i)_{i\in I}}
 	\newcommand{\ff}[3]{(#1_#2)_{#2\in#3}}
 	\newcommand{\SP}{(\cdot,\cdot)}
 	\begin{definition}
 		$(X,\SP)$ Skalarprodukt, $x,y\in X$. $M,N \subset X$, $(x_i)_{i\in I}$ Famile.
-		\begin{enumerate}
+		\begin{enumerate}[(a)]
 			\item $x$ orthogonoal zu $y$ (x $\perp$ y), wenn $(x,y) = 0$.
-			\item $x$ orthogonoal zu $N$ (x $\perp$ M), wenn $x \perp y \forall x\in N$
-			\item $M$ orthogonal zu $N$ (N $\perp$ M), wenn $x \perp M \forall x\in N$.
+			\item $x$ orthogonoal zu $N$ (x $\perp$ M), wenn $x \perp y\quad \forall y\in N$
+			\item $M$ orthogonal zu $N$ (N $\perp$ M), wenn $x \perp M\quad \forall x\in N$.
 			\item $M^\perp = \{x\in X: x\perp M\}$ \qmarks{Orthogonalraum zu M}
-			\item $\xf$ heißt Orthogonalsystem, wenn $x \perp y, \forall i,j \in I, i\neq j$
-			\item $\xf$ heißt Orthonormalsystem, wenn 
-			\item $\xf$ heißt Orthogonalbasis, wenn es linear unabhängig OGS ist und $\overline{span(\xf)} = X$.
+			\item $\xf$ heißt Orthogonalsystem (OGS), wenn $x \perp y, \forall i,j \in I, i\neq j$
+			\item $\xf$ heißt Orthonormalsystem (ONS), wenn es OGS mit $\|x_i \| = 1 \; \forall i \in I$ ist. 
+			\item $\xf$ heißt Orthogonalbasis (OGB), wenn es linear unabhängiges OGS ist und $\overline{span(\xf)} = X$.
 			\item $\xf$ heißt Orthonomalbais (ONB), wenn es OGB und ONS ist.	
 		\end{enumerate}
 	\end{definition}
@@ -987,11 +992,11 @@ klar! (Ja, selbst ohne eine Behauptung)
 			Es ist auch ONB.\par
 			Sei $x = (a_n)_{n\in \N}$, $\varepsilon > 0. \df \exists N \in \N. \sum_{k=N+1}^\infty |a_k| < \varepsilon^2$.
 			Für $v = a_1e_1 + \dots + a_Ne_N \in span(e_n)_{n\in\N}$ \par
-			$\norm{v - x }_2 = (\sum_{k = N +1}^ \infty |a_k|^2)^{\frac{1}{2}} < \varepsilon$
+			$\norm{v - x }_2 = \left( \sum_{k = N +1}^\infty |a_k|^2\right)^{\frac{1}{2}} < \varepsilon$
 
 			\item $\ff{u}{k}{\Z}$ mit $u_k(x) = \frac{1}{\sqrt{2\pi}} e^{ikx}$ \par
 			$u_k \in L^2([0,2\pi])$ ist ONS, da $\int_0^{2\pi} u_k(x) \overline{u_j(x)} dx = \delta_{kj}$ Auch ONB? \par
-			Beachte: $V^\perp$ immer abgeschlossen, da für eine Folge $(v_i)$ in $V^\perp$ mit $v_i \to V$ gilt $(x,v) \leftarrow (x,v_i) = 0 \; \forall x\in V$
+			Beachte: $V^\perp$ immer abgeschlossen, da für eine Folge $(v_i)$ in $V^\perp$ mit $v_i \to v$ gilt $(x,v) \leftarrow (x,v_i) = 0 \; \forall x\in V$ $\df v \in V^\perp$
 		\end{enumerate}
 	\end{bsp}
 
